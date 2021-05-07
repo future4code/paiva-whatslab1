@@ -43,7 +43,7 @@ class Mensagem extends React.Component {
         
        
 
-      <p>{post.Usuario}      {post.mensagem}</p>
+      <p>{post.usuario}<br></br>    {post.mensagem}</p>
     )
   })
     
