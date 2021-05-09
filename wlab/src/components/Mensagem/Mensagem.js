@@ -1,10 +1,11 @@
 import React from 'react';
 import styled from 'styled-components'
 
+
+
 const MainContainer = styled.div`
   margin-top: 25px;
   display: flex;
-  justify-content: center;
   flex-direction: column;
   align-items: center;
  vertical-align: middle;
@@ -16,14 +17,19 @@ width:60%;
 top: 0;
 border: 1px solid  gray;
 margin-top: 6px;
-height: 600px;
-flex-direction: column;
+height: 500px;
+flex-direction: column-reverse;
+align-items: flex-start;
+padding: 5px;
+
 `
 
 const BoxEnvio = styled.div`
 display: flex;
-padding:10px
+padding:10px;
 border: 1px solid  gray;
+width:60%;
+padding:5px;
 `
 
 class Mensagem extends React.Component {
@@ -38,12 +44,13 @@ class Mensagem extends React.Component {
   valorInputMensagem:"",
   }
 
-  adicionaMensagem = () => {
+  adicionaMensagem = (event) => {
+    event.preventDefault()
     const novoPost = {
       usuario: this.state.valorInputUsuario,
       mensagem: this.state.valorInputMensagem,
     };
-    const novaMensagem = [...this.state.post, novoPost];
+    const novaMensagem = [novoPost, ...this.state.post];
 
     this.setState({ post: novaMensagem,  valorInputUsuario:"",
     valorInputMensagem:""});
@@ -63,17 +70,15 @@ class Mensagem extends React.Component {
       
       return(
       
-     <p>
+     <p className="novaMensagem">
         <span><b>
-      {post.usuario}  </b></span>  {post.mensagem}
+      {post.usuario}</b><br></br> </span>
+      &nbsp;&nbsp;&nbsp;
+      {post.mensagem}
 
      </p> 
         
        
-
-
-
-
     )
   })
     
@@ -84,6 +89,7 @@ class Mensagem extends React.Component {
            {listaDePostagem}
        </ContainerMensagem>
        <BoxEnvio>
+         <form onSubmit={this.adicionaMensagem}>
         <input   id="user"  
         value={this.state.valorInputUsuario}
         onChange={this.onChangeInputUsuario}
@@ -94,7 +100,8 @@ class Mensagem extends React.Component {
          onChange={this.onChangeInputMensagem}
          placeholder={"Mensagem"}
        />
-       <button onClick={this.adicionaMensagem}>Enviar</button>
+       <button type={"submit"}>Enviar</button>
+       </form>
        </BoxEnvio>
       </MainContainer>
        
