@@ -9,15 +9,16 @@ const MainContainer = styled.div`
   flex-direction: column;
   align-items: center;
  vertical-align: middle;
-
+border: 1px solid  gray;
+width:60%;
+margin-left:50vh;
 `
 const ContainerMensagem = styled.div`
 display:flex;
-width:60%;
+width:100%;
 top: 0;
-border: 1px solid  gray;
 margin-top: 6px;
-height: 500px;
+height: 90vh;
 flex-direction: column-reverse;
 align-items: flex-start;
 padding: 5px;
@@ -71,9 +72,8 @@ class Mensagem extends React.Component {
       return(
       
      <p className="novaMensagem">
-        <span><b>
-      {post.usuario}</b><br></br> </span>
-      &nbsp;&nbsp;&nbsp;
+        <b>
+      {post.usuario}</b><br></br>   &nbsp;&nbsp;
       {post.mensagem}
 
      </p> 
@@ -88,7 +88,7 @@ class Mensagem extends React.Component {
         <ContainerMensagem>
            {listaDePostagem}
        </ContainerMensagem>
-       <BoxEnvio>
+       
          <form onSubmit={this.adicionaMensagem}>
         <input   id="user"  
         value={this.state.valorInputUsuario}
@@ -102,7 +102,7 @@ class Mensagem extends React.Component {
        />
        <button type={"submit"}>Enviar</button>
        </form>
-       </BoxEnvio>
+       
       </MainContainer>
        
         
